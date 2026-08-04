@@ -1,6 +1,6 @@
-aws_region        = "ap-south-1"
+aws_region = "ap-south-1"
 
-environment       = "dev"
+environment = "dev"
 
 bucket_name_prefix = "terraform-iam-lab"
 
