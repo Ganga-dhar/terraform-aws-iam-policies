@@ -41,7 +41,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Terraform Init
-        run: terraform init -backend-config=backend-config-dev.tfvars
+        run: terraform init
 
       - name: Terraform Format
         run: terraform fmt -check
