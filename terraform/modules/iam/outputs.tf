@@ -9,3 +9,7 @@ output "access_key_id" {
 output "policy_arn" {
   value = aws_iam_policy.developer_policy.arn
 }
+
+output "user_arn" {
+  value = aws_iam_user.developer.arn
+}
