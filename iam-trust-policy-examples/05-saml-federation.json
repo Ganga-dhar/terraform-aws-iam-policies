@@ -1,0 +1,57 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SAMLTrust",
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:saml-provider/MyCompany"
+      },
+      "Action": "sts:AssumeRoleWithSAML"
+    }
+  ]
+}
+
+Permissions policy:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadOnlyAccess",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:Describe*",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+
+Flow:
+
+Employee
+   ↓
+Corporate Identity Provider
+   ↓
+SAML Assertion
+   ↓
+AWS STS
+   ↓
+IAM Role
+   ↓
+AWS Console
+
+Example:
+
+Microsoft Entra ID
+        ↓
+      SAML
+        ↓
+       AWS
+        ↓
+ReadOnlyRole
+
+Use when: enterprise employees authenticate through a corporate identity provider using SAML federation.

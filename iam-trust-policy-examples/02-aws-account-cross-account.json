@@ -1,0 +1,36 @@
+Suppose:
+
+Account A = 111122223333
+Account B = 444455556666
+
+The role exists in Account B.
+
+Trust policy in Account B:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAccountAToAssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::111122223333:root"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+Permissions policy in Account A for the user/role making the assumption:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAssumeProductionRole",
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": "arn:aws:iam::444455556666:role/ProductionDeploymentRole"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "EKSIRSA",
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::123456789012:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/EXAMPLE1234567890"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "oidc.eks.ap-south-1.amazonaws.com/id/EXAMPLE1234567890:aud": "sts.amazonaws.com",
+          "oidc.eks.ap-south-1.amazonaws.com/id/EXAMPLE1234567890:sub": "system:serviceaccount:myapp:myapp-sa"
+        }
+      }
+    }
+  ]
+}

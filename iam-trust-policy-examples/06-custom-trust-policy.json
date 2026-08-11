@@ -1,0 +1,42 @@
+Example: allow a specific role from another account.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SpecificRoleTrust",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::111122223333:role/DeploymentRole"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+
+
+Custom trust with External ID
+
+A common third-party access pattern:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ThirdPartyTrust",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::111122223333:role/ThirdPartyRole"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "my-company-12345"
+        }
+      }
+    }
+  ]
+}
+
+Use when: you need conditions, specific principals, external IDs, or other trust relationships that the basic console wizard doesn't express conveniently

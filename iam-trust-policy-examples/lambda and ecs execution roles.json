@@ -1,0 +1,84 @@
+7. Lambda example — AWS Service trust
+
+Another useful AWS Service example.
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LambdaTrust",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+Permissions:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudWatchLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+
+Flow:
+
+Lambda
+  ↓
+Lambda Execution Role
+  ↓
+CloudWatch Logs
+8. ECS Task Role — another important AWS Service example
+
+For ECS, don't confuse the task role and execution role.
+
+Task role trust:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+Permissions could be:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": "arn:aws:s3:::my-app-bucket/*"
+    }
+  ]
+}
+
+Flow:
+
+ECS Task
+  ↓
+Task Role
+  ↓
+S3
