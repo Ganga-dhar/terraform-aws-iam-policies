@@ -18,8 +18,8 @@ module "iam" {
 module "auto_tagger" {
   source = "./modules/auto_tagger"
 
-  environment  = var.environment
-  aws_region   = var.aws_region
+  environment = var.environment
+  aws_region  = var.aws_region
 
   mandatory_tags = {
     Project     = "Terraform-IAM-Lab"
