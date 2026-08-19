@@ -1,0 +1,1 @@
+# Auto-tagger Lambda package
